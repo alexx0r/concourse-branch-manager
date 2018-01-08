@@ -1,10 +1,8 @@
 #!/bin/bash
 
-ifconfig
+echo "$CONCOURSE_URL"
 
-ping "$CONCOURSE_URL"
-
-curl --insecure https://$CONCOURSE_URL/api/v1/cli?arch=amd64&platform=linux > $FLY
+curl --insecure $CONCOURSE_URL/api/v1/cli?arch=amd64&platform=linux > $FLY
 
 ls
 
