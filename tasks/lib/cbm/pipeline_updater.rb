@@ -59,9 +59,11 @@ module Cbm
       fly_download_url = "https://github.com/concourse/concourse/releases/download/v3.8.0/fly_linux_amd64"
       log fly_download_url
       read_binary_open_mode = 'rb'
+      proxy_uri = URI.parse(ENV.fetch('PROXY_URI'))
       stream = open(
         fly_download_url,
-        read_binary_open_mode
+        read_binary_open_mode,
+        :proxy_http_basic_authentication => [proxy_uri, ENV.fetch('PROXY_USER'), ENV.fetch('PROXY_PASSWORD')]
       )
       IO.copy_stream(stream, fly_path)
       process("chmod +x #{fly_path}")
