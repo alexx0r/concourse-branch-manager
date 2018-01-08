@@ -1,6 +1,7 @@
 require 'process_helper'
 require 'tmpdir'
 require 'open-uri'
+require 'openssl'
 
 module Cbm
   # Creates/updates pipeline via fly
