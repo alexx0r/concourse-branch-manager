@@ -58,12 +58,10 @@ module Cbm
 
       fly_download_url = "#{url}/api/v1/cli?arch=amd64&platform=linux"
       read_binary_open_mode = 'rb'
-      proxy_uri = URI.parse(ENV.fetch('PROXY_URI'))
       stream = open(
         fly_download_url,
         read_binary_open_mode,
-        http_basic_authentication: [username, password],
-        :proxy_http_basic_authentication => [proxy_uri, ENV.fetch('PROXY_USER'), ENV.fetch('PROXY_PASSWORD')]
+        http_basic_authentication: [username, password]
       )
       IO.copy_stream(stream, fly_path)
       process("chmod +x #{fly_path}")
