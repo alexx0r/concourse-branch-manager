@@ -3,7 +3,9 @@ platform: linux
 
 image_resource:
   type: docker-image
-  source: {repository: yodavwservices/java8-nvm-firefox-esr}
+  source:
+    repository: tracker/busyboxplus
+    tag: ruby-git
 
 inputs:
 - name: concourse-branch-manager
@@ -22,4 +24,4 @@ params:
   PROXY_PASSWORD: null
 
 run:
-  path: concourse-branch-manager/tasks/manage_branches.sh
+  path: concourse-branch-manager/tasks/manage_branches.rb

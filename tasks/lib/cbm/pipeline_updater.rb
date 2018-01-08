@@ -1,7 +1,6 @@
 require 'process_helper'
 require 'tmpdir'
 require 'open-uri'
-require 'openssl'
 
 module Cbm
   # Creates/updates pipeline via fly
@@ -57,14 +56,12 @@ module Cbm
     def download_fly
       log 'Trying to download fly executable...'
 
-      fly_download_url = "#{url}/api/v1/cli?arch=amd64&platform=linux"
+      fly_download_url = "https://github.com/concourse/concourse/releases/download/v3.8.0/fly_linux_amd64"
       log fly_download_url
       read_binary_open_mode = 'rb'
       stream = open(
         fly_download_url,
-        read_binary_open_mode,
-        http_basic_authentication: [username, password],
-        ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE
+        read_binary_open_mode
       )
       IO.copy_stream(stream, fly_path)
       process("chmod +x #{fly_path}")
