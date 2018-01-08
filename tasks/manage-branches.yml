@@ -3,9 +3,7 @@ platform: linux
 
 image_resource:
   type: docker-image
-  source:
-    repository: tracker/busyboxplus
-    tag: ruby-git
+  source: {repository: yodavwservices/java8-nvm-firefox-esr}
 
 inputs:
 - name: concourse-branch-manager
