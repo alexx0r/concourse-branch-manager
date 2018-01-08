@@ -19,9 +19,8 @@ params:
   CONCOURSE_USERNAME: null
   CONCOURSE_PASSWORD: null
   CONCOURSE_TEAM: null
-  PROXY_URI: null
-  PROXY_USER: null
-  PROXY_PASSWORD: null
+  HTTP_PROXY: null
+  HTTPS_PROXY: null
 
 run:
   path: concourse-branch-manager/tasks/manage_branches.rb

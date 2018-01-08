@@ -30,7 +30,7 @@ module Cbm
       log 'Logging into concourse...'
       team_argument = team != nil && team != "" ? "--team-name=#{team}" : ''
       process(
-        "#{fly_path} --target=concourse login -k --verbose --concourse-url=#{url} #{team_argument} -u #{username} -p #{password}",
+        "#{fly_path} --target=concourse login --verbose --concourse-url=#{url} #{team_argument} -u #{username} -p #{password}",
         timeout: 5)
 
       log 'Updating pipeline...'
@@ -55,14 +55,11 @@ module Cbm
     def download_fly
       log 'Trying to download fly executable...'
 
-      fly_download_url = "https://github.com/concourse/concourse/releases/download/v3.8.0/fly_linux_amd64"
-      log fly_download_url
+      fly_download_url = "#{url}/api/v1/cli?arch=amd64&platform=linux"
       read_binary_open_mode = 'rb'
-      proxy_uri = URI.parse(ENV.fetch('PROXY_URI'))
       stream = open(
         fly_download_url,
-        read_binary_open_mode,
-        :proxy_http_basic_authentication => [proxy_uri, ENV.fetch('PROXY_USER'), ENV.fetch('PROXY_PASSWORD')]
+        read_binary_open_mode
       )
       IO.copy_stream(stream, fly_path)
       process("chmod +x #{fly_path}")
