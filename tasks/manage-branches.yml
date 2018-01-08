@@ -24,4 +24,4 @@ params:
   PROXY_PASSWORD: null
 
 run:
-  path: concourse-branch-manager/tasks/manage_branches.sh
+  path: concourse-branch-manager/tasks/manage_branches.rb

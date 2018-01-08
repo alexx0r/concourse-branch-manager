@@ -62,7 +62,8 @@ module Cbm
       stream = open(
         fly_download_url,
         read_binary_open_mode,
-        http_basic_authentication: [username, password]
+        http_basic_authentication: [username, password],
+        ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE
       )
       IO.copy_stream(stream, fly_path)
       process("chmod +x #{fly_path}")
