@@ -58,6 +58,8 @@ module Cbm
 
       fly_download_url = "#{url}/api/v1/cli?arch=amd64&platform=linux"
       read_binary_open_mode = 'rb'
+      print "http_proxy: " + ENV.fetch('HTTP_PROXY')
+      print "https_proxy: " + ENV.fetch('HTTPS_PROXY')
       stream = open(
         fly_download_url,
         read_binary_open_mode,
