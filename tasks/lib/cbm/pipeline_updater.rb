@@ -60,7 +60,6 @@ module Cbm
       read_binary_open_mode = 'rb'
       stream = open(
         fly_download_url,
-        :read_binary_open_mode => read_binary_open_mode,
         :http_basic_authentication => [username, password],
         :proxy => nil,
         :ssl_verify_mode => OpenSSL::SSL::VERIFY_NONE
