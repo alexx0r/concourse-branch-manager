@@ -23,4 +23,4 @@ params:
   HTTPS_PROXY: null
 
 run:
-  path: concourse-branch-manager/tasks/manage_branches.rb
+  path: concourse-branch-manager/tasks/manage_branches.sh

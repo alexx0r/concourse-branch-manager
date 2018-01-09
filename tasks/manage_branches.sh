@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 apk --update add \
     ruby ruby-irb ruby-rake ruby-io-console ruby-bigdecimal ruby-json ruby-bundler \
