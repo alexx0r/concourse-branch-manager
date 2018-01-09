@@ -19,5 +19,5 @@ echo $CONCOURSE_TEAM  $CONCOURSE_USERNAME $CONCOURSE_PASSWORD
 
 curl --insecure -SsL https://concourse-sdc.wob.vw.vwg/api/v1/info
 
-./fly --target=concourse login -k --verbose --concourse-url="$CONCOURSE_URL" --team-name=kpm -u $CONCOURSE_USERNAME -p $CONCOURSE_PASSWORD
+./fly --target=concourse login -k --verbose --concourse-url="https://concourse-sdc.wob.vw.vwg" --team-name=kpm -u $CONCOURSE_USERNAME -p $CONCOURSE_PASSWORD
 
