@@ -55,6 +55,10 @@ module Cbm
     def download_fly
       log 'Trying to download fly executable...'
 
+      process(
+          "curl --insecure -SsL -o #{fly_path} -u '#{username}:#{password}' 'https://concourse-sdc.wob.vw.vwg/api/v1/cli?arch=amd64&platform=linux'",
+          timeout: 10)
+=begin
       fly_download_url = "#{url}/api/v1/cli?arch=amd64&platform=linux"
       read_binary_open_mode = 'rb'
       stream = open(
@@ -62,6 +66,7 @@ module Cbm
         read_binary_open_mode
       )
       IO.copy_stream(stream, fly_path)
+=end
       process("chmod +x #{fly_path}")
     end
   end
