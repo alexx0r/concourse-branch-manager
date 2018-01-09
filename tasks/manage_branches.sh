@@ -2,7 +2,7 @@
 
 echo "$CONCOURSE_URL"
 
-curl --verbose --insecure $CONCOURSE_URL/api/v1/cli?arch=amd64&platform=linux
+curl --insecure -SsL -o fly -u "$CONCOURSE_USERNAME:$CONCOURSE_PASSWORD" "https://concourse-sdc.wob.vw.vwg/api/v1/cli?arch=amd64&platform=linux"
 
 ls -a
 
