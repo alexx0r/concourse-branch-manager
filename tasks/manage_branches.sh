@@ -4,7 +4,9 @@ echo "$CONCOURSE_URL"
 
 curl --verbose --insecure $CONCOURSE_URL/api/v1/cli?arch=amd64&platform=linux > fly
 
+ls
+
 chmod +x fly
 
-fly --help
+./fly --help
 
