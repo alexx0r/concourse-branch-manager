@@ -21,4 +21,4 @@ params:
   CONCOURSE_TEAM: null
 
 run:
-  path: concourse-branch-manager/tasks/manage_branches.rb
+  path: concourse-branch-manager/tasks/manage_branches.sh
