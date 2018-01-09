@@ -42,8 +42,6 @@ module Cbm
       process(unpause_pipeline_cmd, timeout: 5)
     end
 
-    private
-
     def generate_set_pipeline_cmd
       load_vars_from_options = load_vars_from_entries.reduce('') do |options, entry|
         "#{options}--load-vars-from=#{entry} "
@@ -53,9 +51,8 @@ module Cbm
     end
 
     def download_fly
-      log 'Trying to download fly executable...'
+      log 'downloading fly executable...'
       fly_download_url = "#{url}/api/v1/cli?arch=amd64&platform=linux"
-      log username + password
       read_binary_open_mode = 'rb'
       stream = open(
         fly_download_url,
