@@ -30,7 +30,7 @@ module Cbm
       log 'Logging into concourse...'
       team_argument = team != nil && team != "" ? "--team-name=#{team}" : ''
       process(
-        "#{fly_path} --target=concourse login -k --verbose --concourse-url=#{url} #{team_argument} -u #{username} -p #{password}",
+        "#{fly_path} --target=concourse login -k --concourse-url=#{url} #{team_argument} -u #{username} -p #{password}",
         timeout: 5)
 
       log 'Updating pipeline...'
