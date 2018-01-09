@@ -3,8 +3,7 @@ platform: linux
 
 image_resource:
   type: docker-image
-  source:
-    repository: debain
+  source: {repository: node, tag: 8.9.4}
 
 inputs:
 - name: concourse-branch-manager
