@@ -22,8 +22,9 @@ module Cbm
       @job_template_file = ENV.fetch('BRANCH_JOB_TEMPLATE')
       @pipeline_name = ENV.fetch('PIPELINE_NAME', nil)
       @load_vars_from_entries = parse_load_vars_from_entries
-      log parse_load_vars_from_entries
       @load_vars_entries = parse_load_vars_entries
+      log 'parse_load_vars_entries'
+      log parse_load_vars_entries
       @common_resources_template = ENV.fetch('PIPELINE_COMMON_RESOURCES_TEMPLATE', nil)
       @resource_type_template_file = ENV.fetch('PIPELINE_RESOURCE_TYPE_TEMPLATE', nil)
       @group_per_branch = ENV.fetch('GROUP_PER_BRANCH', 'true') == 'true'
