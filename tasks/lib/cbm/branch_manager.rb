@@ -9,7 +9,7 @@ module Cbm
   class BranchManager
     include Logger
     attr_reader :build_root, :url, :username, :password, :username, :team, :resource_template_file
-    attr_reader :job_template_file, :load_vars_from_entries, :pipeline_name
+    attr_reader :job_template_file, :load_vars_from_entries, :load_vars_entries, :pipeline_name
     attr_reader :common_resources_template, :group_per_branch, :resource_type_template_file
 
     def initialize
@@ -23,8 +23,6 @@ module Cbm
       @pipeline_name = ENV.fetch('PIPELINE_NAME', nil)
       @load_vars_from_entries = parse_load_vars_from_entries
       @load_vars_entries = parse_load_vars_entries
-      log 'parse_load_vars_entries'
-      log parse_load_vars_entries
       @common_resources_template = ENV.fetch('PIPELINE_COMMON_RESOURCES_TEMPLATE', nil)
       @resource_type_template_file = ENV.fetch('PIPELINE_RESOURCE_TYPE_TEMPLATE', nil)
       @group_per_branch = ENV.fetch('GROUP_PER_BRANCH', 'true') == 'true'
@@ -50,6 +48,7 @@ module Cbm
         team,
         pipeline_file,
         load_vars_from_entries,
+        load_vars_entries,
         pipeline_name_or_default(git_uri)).set_pipeline
     end
 
