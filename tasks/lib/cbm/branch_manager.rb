@@ -7,7 +7,6 @@ require 'json'
 module Cbm
   # Main class and entry point
   class BranchManager
-    include Logger
     attr_reader :build_root, :url, :username, :password, :username, :team, :resource_template_file
     attr_reader :job_template_file, :load_vars_from_entries, :load_vars_entries, :pipeline_name
     attr_reader :common_resources_template, :group_per_branch, :resource_type_template_file

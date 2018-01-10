@@ -5,6 +5,7 @@ require 'erb'
 module Cbm
   # Generates pipeline yml based on branches
   class PipelineGenerator
+    include Logger
     attr_reader :git_uri, :branches, :resource_template_file, :job_template_file
     attr_reader :common_resource_template_file, :group_per_branch, :resource_type_template_file
 
