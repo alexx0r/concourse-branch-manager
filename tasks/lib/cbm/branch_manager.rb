@@ -7,6 +7,7 @@ require 'json'
 module Cbm
   # Main class and entry point
   class BranchManager
+    include Logger
     attr_reader :build_root, :url, :username, :password, :username, :team, :resource_template_file
     attr_reader :job_template_file, :load_vars_from_entries, :pipeline_name
     attr_reader :common_resources_template, :group_per_branch, :resource_type_template_file
@@ -21,6 +22,8 @@ module Cbm
       @job_template_file = ENV.fetch('BRANCH_JOB_TEMPLATE')
       @pipeline_name = ENV.fetch('PIPELINE_NAME', nil)
       @load_vars_from_entries = parse_load_vars_from_entries
+      log parse_load_vars_from_entries
+      @load_vars_entries = parse_load_vars_entries
       @common_resources_template = ENV.fetch('PIPELINE_COMMON_RESOURCES_TEMPLATE', nil)
       @resource_type_template_file = ENV.fetch('PIPELINE_RESOURCE_TYPE_TEMPLATE', nil)
       @group_per_branch = ENV.fetch('GROUP_PER_BRANCH', 'true') == 'true'
@@ -63,6 +66,15 @@ module Cbm
     def parse_load_vars_from_entries
       entries = ENV.keys.map do |key|
         regexp = /^(PIPELINE_LOAD_VARS_FROM_\d+)$/
+        matches = regexp.match(key)
+        ENV.fetch(matches[1]) if matches
+      end
+      entries.compact
+    end
+
+    def parse_load_vars_entries
+      entries = ENV.keys.map do |key|
+        regexp = /^(PIPELINE_LOAD_VARS_\d+)$/
         matches = regexp.match(key)
         ENV.fetch(matches[1]) if matches
       end

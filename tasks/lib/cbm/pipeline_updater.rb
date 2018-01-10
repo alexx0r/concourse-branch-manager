@@ -53,7 +53,6 @@ module Cbm
     def download_fly
       log 'downloading fly executable...'
       fly_download_url = "#{url}/api/v1/cli?arch=amd64&platform=linux"
-      read_binary_open_mode = 'rb'
       stream = open(
         fly_download_url,
         :http_basic_authentication => [username, password],
