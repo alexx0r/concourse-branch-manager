@@ -45,7 +45,7 @@ module Cbm
 
     def generate_set_pipeline_cmd
       load_vars_options = load_vars_entries.reduce('') do |options, entry|
-        "#{options}--vars #{entry} "
+        "#{options}--var #{entry} "
       end.strip
       load_vars_from_options = load_vars_from_entries.reduce('') do |options, entry|
         "#{options}--load-vars-from=#{entry} "
