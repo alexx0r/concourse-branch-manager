@@ -32,18 +32,18 @@ describe Cbm::PipelineUpdater do
 
     expect(subject).to receive(:process).with('chmod +x /path/to/fly')
 
-    login_cmd = '/path/to/fly --target=concourse login ' \
+    login_cmd = '/path/to/fly --target=lite login ' \
       '--concourse-url=http://myconcourse.example.com'
     expect(subject).to receive(:process)
         .with(login_cmd, timeout: 5, input_lines: %w(admin password))
 
     expect(pipeline_file).to receive(:to_s).and_return('/tmp/pipeline.yml')
-    set_pipeline_cmd = '/path/to/fly --target=concourse set-pipeline ' \
+    set_pipeline_cmd = '/path/to/fly --target=lite set-pipeline ' \
       '--config=/tmp/pipeline.yml --pipeline=my-pipeline ' \
       '--load-vars-from=path/to/config --load-vars-from=path/to/credentials'
     expect(subject).to receive(:process).with(set_pipeline_cmd, timeout: 5, input_lines: %w(y))
 
-    unpause_cmd = '/path/to/fly --target=concourse unpause-pipeline --pipeline=my-pipeline'
+    unpause_cmd = '/path/to/fly --target=lite unpause-pipeline --pipeline=my-pipeline'
     expect(subject).to receive(:process).with(unpause_cmd, timeout: 5)
 
     subject.set_pipeline

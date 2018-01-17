@@ -31,14 +31,14 @@ module Cbm
       log 'Logging into concourse...'
       team_argument = team != nil && team != "" ? "--team-name=#{team}" : ''
       process(
-        "#{fly_path} --target=concourse login -k --concourse-url=#{url} #{team_argument} -u #{username} -p #{password}",
+        "#{fly_path} --target=lite login -k --concourse-url=#{url} #{team_argument} -u #{username} -p #{password}",
         timeout: 5)
 
       log 'Updating pipeline...'+generate_set_pipeline_cmd
       process(generate_set_pipeline_cmd, timeout: 5, input_lines: %w(y))
 
       log 'Unpausing pipeline...'
-      unpause_pipeline_cmd = "#{fly_path} --target=concourse unpause-pipeline " \
+      unpause_pipeline_cmd = "#{fly_path} --target=lite unpause-pipeline " \
         "--pipeline=#{pipeline_name}"
       process(unpause_pipeline_cmd, timeout: 5)
     end
@@ -50,7 +50,7 @@ module Cbm
       load_vars_from_options = load_vars_from_entries.reduce('') do |options, entry|
         "#{options}--load-vars-from=#{entry} "
       end.strip
-      "#{fly_path} --target=concourse set-pipeline --config=#{pipeline_file} " \
+      "#{fly_path} --target=lite set-pipeline --config=#{pipeline_file} " \
         "--pipeline=#{pipeline_name} #{load_vars_options} #{load_vars_from_options}"
     end
 
