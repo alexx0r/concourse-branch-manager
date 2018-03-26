@@ -116,6 +116,7 @@ module Cbm
     end
 
     def create_common_entries_from_template(binding_class, template_file)
+      return '' unless branches.any?
       return '' unless template_file
       template = open(template_file).read
       erb_binding = binding_class.new
