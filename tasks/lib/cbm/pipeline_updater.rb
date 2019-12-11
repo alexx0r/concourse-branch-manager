@@ -59,7 +59,6 @@ module Cbm
       fly_download_url = "#{url}/api/v1/cli?arch=amd64&platform=linux"
       stream = open(
         fly_download_url,
-        :http_basic_authentication => [username, password],
         :proxy => nil,
         :ssl_verify_mode => OpenSSL::SSL::VERIFY_NONE
       )
